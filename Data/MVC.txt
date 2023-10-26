@@ -1,0 +1,92 @@
+Que es MVC?
+	Patron de arquitectura
+	Model  View  Controller
+	
+	separa responsabilidades
+	
+	Model Store and manage data
+	
+	View Display data and handles user interaction
+	
+	Controller connects Model and View
+	
+	Modelo es una clase - puede terner o no lógica de validación - atributos
+		[required]
+		[MinLength (2)]
+		
+	
+	Controller tiene la gran mayor[ia de logica del negocio
+				recibe las interaction entre el usuario.
+				
+	Endpoint o controlador 
+	
+	La vista tiene el mismo nombre del controlador para que reconozca cual es la vista del controlador
+	La vista tiene un estilo ya que lo toma del template que se llama Layout dentro de la vista Share
+	
+	Pasada del callString que pasa en el URL son los parametros que pssan del metodo del IActionResult
+	
+	Los ViewDatas diccionario din[amico / acepta cualquier tipo de valor
+		ViewData["Message"] = "Hello " + name;
+		ViewData["Age"] = age;
+		
+		return view();
+	
+	Crear nueva vista para pasar los view desde el controlador
+	se utiliza los diccionarios que se hab[ian creado en el controlador
+	c[odigo razor	
+		@{
+			viewData["Title"] = "Welcome";
+		}
+	
+		<h2>Welcome</h2>
+		
+		<ul>
+			@for (int i =0; i< (int)ViewData["Age"]! ; i++)
+			{
+				<li>@ViewData["Message"]</li>
+			}			
+		</ul>
+		
+	
+	--------
+	
+	Agregar el modelo al proyecto
+	
+	otro controlador tiene un nuevo Endpoint
+	
+	public IActionResult Details(int? id)
+	{
+		if(id == null)
+		{
+			return NotFound();
+		}
+		
+		
+		//llamada a la base de datos
+		var person = new Person();
+		person.Name = "John Wick";
+		person.PhoneNumber = "3344334";
+		person.Email = "johnWick@gmail.com";
+		
+		return View(person);
+	}
+	
+	en una vista nueva llamada Details.cshtml
+	
+	<h1>Details</h1>
+	
+	<div>
+		<h4>Person</h4>
+		
+		<hr>
+		
+		<dl class="row">
+			<dt lass="col-sm-2">
+				@Html.DisplayNameFor(model => model.Name)
+			</dt>
+		
+		
+		
+		</div>
+	
+	</div>
