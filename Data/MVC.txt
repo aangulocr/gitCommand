@@ -90,3 +90,10 @@ Que es MVC?
 		</div>
 	
 	</div>
+
+
+git init
+git add .
+git commit -m "mensaje"
+git remote add origin https://github.com/aangulocr/gitCommand.git
+git push -u origin master
